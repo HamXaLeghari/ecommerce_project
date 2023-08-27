@@ -36,7 +36,7 @@ class UserController extends Controller
              'password' => 'required|string|min:8|regex:/[0-9]/', // You might want to adjust the minimum length
              'phone' => 'required|string|max:20',
              'Current_address' => 'required|string|max:100',
-             'is_admin' => 'nullable|boolean',
+             'is_admin' => 'nullable|boolean|in:1,0',
              'gender' => 'required|in:Male,Female',
          ]);
         
@@ -125,6 +125,13 @@ class UserController extends Controller
 
         if(Auth::attempt($credentials))
         {
+            $user=Auth::user();
+            if($user->is_admin)
+            {
+                return response()->json('Admin', 200);
+            }
+            else
+            return response()->json('Customer', 200);
             
             return response()->json(['message' => 'Login Successful!'], 200);
         }

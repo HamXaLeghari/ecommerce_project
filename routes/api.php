@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\RedirectBasedOnRole;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +23,4 @@ use App\Http\Controllers\UserController;
 
 Route::post('/signup', [UserController::class, 'store']);
 
-Route::post('/login',[UserController::class,'login']);
+Route::post('/login',[UserController::class,'login'])->middleware('check_role');
