@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/add_cart/{id}', [CartController::class,'add_cart']);
+Route::get('/show_cart', [CartController::class,'show_cart']);
+Route::get('/remove_cart/{id}', [CartController::class,'remove_cart']);
+Route::get('/cash_order', [CartController::class,'cash_order']);
+// Route::get('/stripe/{totalprice}', [CartController::class,'stripe']);
+
