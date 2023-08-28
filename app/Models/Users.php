@@ -9,14 +9,13 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class Users extends Model implements Authenticatable
-{
+{   
     use HasApiTokens, HasFactory, Notifiable;
     use \Illuminate\Auth\Authenticatable; // Use the Authenticatable trait
 
-    protected $table = 'users';
+    protected $table='user';
 
     protected $fillable = [
-
         'name',
         'email',
         'password',
@@ -25,11 +24,5 @@ class Users extends Model implements Authenticatable
         'is_admin',
         'gender',
     ];
-
-    public function orders()
-    {
-
-        return $this->hasMany(Order::class);
-
-    }
 }
+

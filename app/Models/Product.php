@@ -10,7 +10,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    //protected $connection = "pgsql";
+    protected $connection = "pgsql";
 
     protected $table = "product";
 
@@ -28,18 +28,12 @@ class Product extends Model
         "category_id"
     ];
 
-    public function getImageAttribute($value)
-    {
+    public function getImageAttribute($value){
         return url($value);
     }
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class, "category_id");
-    }
-
-    public function productOrders(){
-
-        return $this->hasMany(ProductOrder::class);
+        return $this->belongsTo(Category::class,"category_id");
     }
 }
