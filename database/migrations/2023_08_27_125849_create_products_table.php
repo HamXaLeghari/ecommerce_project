@@ -12,10 +12,19 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
+{
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->text("image");
+            $table->string("title");
+            $table->string("description");
+            $table->double("price");
+            $table->integer("stock_quantity");
+            $table->boolean("is_available")->default(true);
+            $table->boolean("is_featured")->default(false);
             $table->timestamps();
+            $table->unsignedBigInteger("category_id");
+            $table->foreign("category_id")->references("id")->on("category");
         });
     }
 

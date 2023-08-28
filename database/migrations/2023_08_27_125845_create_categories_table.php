@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+       Schema::create('category', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign("user_id")->references("id")->on("users");
-            $table->string('total amount')->nullable();
-            $table->string('status')->nullable();
-            $table->timestamps();
-        });
-    }
+            $table->text("image_path");
+            $table->string("name")->unique();
+            $table->string("description");
+            $table->boolean("is_featured")->default(false);
+            $table->boolean("is_active")->default(true);
+    });
+}
+
+
 
     /**
      * Reverse the migrations.
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('categories');
     }
 };

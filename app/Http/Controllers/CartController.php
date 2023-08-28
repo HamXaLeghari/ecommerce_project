@@ -15,6 +15,7 @@ class CartController extends Controller
 
         if (Auth::id()) {
 
+            
             $user = Auth::user();
             $product = Product::find($id);
             $cart = new Cart;
