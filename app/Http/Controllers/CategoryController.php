@@ -53,6 +53,7 @@ class CategoryController extends Controller
 
             return response(["message"=>$exception->getMessage()],400);
         }
+        
     }
 
     public function update(Request $request)

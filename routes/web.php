@@ -3,6 +3,8 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckAdminRole;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +23,11 @@ Route::get('/', function () {
 
 Route::get("/category",[CategoryController::class,"findAll"]);
 
-Route::post("/category/add",[CategoryController::class,"add"]);
+Route::post("/category/add",[CategoryController::class,"add"])->middleware(CheckAdminRole::class);
 
-Route::post("/category/update",[CategoryController::class,"update"]);
+Route::post("/category/update",[CategoryController::class,"update"])->middleware(CheckAdminRole::class);
 
-Route::delete("/category/delete",[CategoryController::class,"delete"]);
+Route::delete("/category/delete",[CategoryController::class,"delete"])->middleware(CheckAdminRole::class);
 
 
 Route::get("/products",[ProductController::class,"findAll"]);
@@ -33,8 +35,8 @@ Route::get("/products/category/{categoryName}",[ProductController::class,"findBy
 
 Route::get("/products/search",[ProductController::class, "searchByTitle"]);
 
-Route::post("/products/add",[ProductController::class,"add"]);
+Route::post("/products/add",[ProductController::class,"add"])->middleware(CheckAdminRole::class);
 
-Route::post("/products/update",[ProductController::class,"update"]);
+Route::post("/products/update",[ProductController::class,"update"])->middleware(CheckAdminRole::class);
 
-Route::delete("/products/delete",[ProductController::class,"delete"]);
+Route::delete("/products/delete",[ProductController::class,"delete"])->middleware(CheckAdminRole::class);
