@@ -8,7 +8,7 @@ use Illuminate\Contracts\Auth\Authenticatable; // Import the Authenticatable int
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Users extends Model implements Authenticatable
+class User extends Model implements Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     use \Illuminate\Auth\Authenticatable; // Use the Authenticatable trait

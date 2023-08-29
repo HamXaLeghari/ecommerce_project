@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -39,7 +39,7 @@ class UserController extends Controller
              'is_admin' => 'nullable|boolean|in:1,0',
              'gender' => 'required|in:Male,Female',
          ]);
-        
+
        /* $name = $request->input('name');
         $email = $request->input('email');
         $password=$request->input('password');
@@ -50,7 +50,7 @@ class UserController extends Controller
 
 
 
-        $user= new Users();
+        $user= new User();
 
         $user->name=$name;
         $user->email=$email;
@@ -61,7 +61,7 @@ class UserController extends Controller
         $user->gender=$gender;
          */
         $validatedData['password'] = bcrypt($validatedData['password']);
-        $user=new Users($validatedData);
+        $user=new User($validatedData);
 
         $user->save();
 
@@ -73,8 +73,8 @@ class UserController extends Controller
         } catch (\Exception $e) {
             // Handle other exceptions
             return response()->json(['message' => 'Error Occured :Please Enter Valid Data']);
-        }    
-    
+        }
+
     }
 
     /**
@@ -132,19 +132,19 @@ class UserController extends Controller
             }
             else
             return response()->json('Customer', 200);
-            
+
             return response()->json(['message' => 'Login Successful!'], 200);
         }
         else
         {
-            return response()->json(['message' => 'Invalid Email or Password'], 401);   
+            return response()->json(['message' => 'Invalid Email or Password'], 401);
         }
 
         /*$email = $request->input('email');
     $password = $request->input('password');
 
     // Find user by email
-    $user = Users::where('email', $email)->first();
+    $user = User::where('email', $email)->first();
 
     if ($user && $user->password === $password) {
         // Authentication successful
@@ -157,8 +157,8 @@ class UserController extends Controller
         // Handle other exceptions
         return response()->json(['message' => 'Error Occured :Please Enter Both Email and Password']);
     }
-    
+
     }
-    
-    
+
+
 }
