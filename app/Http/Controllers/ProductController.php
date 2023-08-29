@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Facades\Validator;
 use Nette\Schema\ValidationException;
 
 class ProductController extends Controller
@@ -19,11 +21,11 @@ class ProductController extends Controller
     }
 
 
-    public function findOne(Request $request){
+    public function findOne($id){
 
         try {
 
-            $input = $this->validate($request, ["id" => "required|numeric"]);
+            $input = Validator::make(["id"=>$id],["id"=>"required|numeric"])->validate();
 
             return response(Product::query()->findOrFail($input["id"]),200);
 
