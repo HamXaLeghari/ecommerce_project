@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductOrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckAdminRole;
 
@@ -40,3 +42,16 @@ Route::post("/products/add",[ProductController::class,"add"])->middleware(CheckA
 Route::post("/products/update",[ProductController::class,"update"])->middleware(CheckAdminRole::class);
 
 Route::delete("/products/delete",[ProductController::class,"delete"])->middleware(CheckAdminRole::class);
+
+
+
+Route::post("/order/add",[OrderController::class,"add"]);
+Route::delete("/order/remove",[OrderController::class,"remove"]);
+
+
+Route::post("/product-order/add",[ProductOrderController::class,"add"]);
+Route::delete("/product-order/delete",[ProductOrderController::class,"remove"]);
+Route::post("/product-order/quantity/update",[ProductOrderController::class,"updateQuantity"]);
+Route::get("/product-order/orders/",[ProductOrderController::class,"findByOrder"]);
+
+
