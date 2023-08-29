@@ -88,7 +88,6 @@ class ProductOrderController extends Controller
 
      return response(["message"=>"Update Successful"],200);
 
-
     }
 
 
