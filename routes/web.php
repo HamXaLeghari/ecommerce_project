@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductOrderController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +21,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::post('/signup', [UserController::class, 'store']);
+
+Route::post('/login',[UserController::class,'login'])->middleware('check_role');
 
 Route::get("/category",[CategoryController::class,"findAll"]);
 
@@ -43,6 +50,9 @@ Route::post("/products/update",[ProductController::class,"update"]);
 
 Route::delete("/products/delete",[ProductController::class,"delete"]);
 
+
+Route::post("/order/add",[OrderController::class,"add"]);
+Route::delete("/order/remove",[OrderController::class,"remove"]);
 
 
 Route::post("/product-order/add",[ProductOrderController::class,"add"]);

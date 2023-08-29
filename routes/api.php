@@ -21,6 +21,6 @@ use App\Http\Middleware\RedirectBasedOnRole;
 // });
 
 
-Route::post('/signup', [UserController::class, 'store']);
+/*Route::post('/signup', [UserController::class, 'store']);
 
-Route::post('/login',[UserController::class,'login'])->middleware('check_role');
+Route::post('/login',[UserController::class,'login'])->middleware('check_role');*/

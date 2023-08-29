@@ -25,11 +25,8 @@ class User extends Model implements Authenticatable
         'gender',
     ];
 
-    public function orders()
-    {
-
+    public function orders(){
         return $this->hasMany(Order::class);
-
     }
 }
 
